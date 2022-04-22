@@ -1,34 +1,46 @@
 import React, {useContext} from 'react';
-import {TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Image, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import StateContext from '../../contexts/state';
-import {Container, Text} from './styles';
+import {
+  Container, 
+  Text,
+  TopContainer,
+  Avatar,
+  RightItems,
+  NotificationContainer
+} from './styles';
+
+const styles = StyleSheet.create({
+  avatar: {
+    width: 46,
+    height: 46,
+    borderRadius: 33
+  },
+});
+
 
 const Home = props => {
   const {navigation} = props;
   const {getList, cryptoList} = useContext(StateContext);
 
-  const handlePress = () => {
-    navigation.navigate('List');
-  };
-
-  const handleList = async () => {
-    await getList();
-    console.log(cryptoList);
-  };
+  var avatar = require ('../../../assets/avatar.jpeg');
 
   return (
     <Container>
-      <Icon name='users' size={60} color='#900' />
-      <Text>Home2</Text>
-      <TouchableOpacity onPress={handlePress}>
-        <Text>Go to List</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={handleList}>
-        <Text>Go to List</Text>
-      </TouchableOpacity>
+      <TopContainer>
+      <Image
+        style={styles.avatar}
+        source={avatar}
+      />
+        <RightItems>
+          <Icon name='search' size={30} color='#7e8bae' />
+          <NotificationContainer>
+            <Icon name='notifications' size={30} color='#7e8bae' />
+          </NotificationContainer>
+        </RightItems>
+      </TopContainer>
     </Container>
   );
 };
