@@ -15,10 +15,14 @@ export const LeftItems = styled.View`
 
 export const RightItems = styled.View`
   display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
 `
 
 export const Main = styled.View`
   display: flex;
+  justify-content: space-around;
+  margin-left: 6px;
 `
 
 export const Name = styled.Text`

@@ -11,25 +11,25 @@ interface ListItemProp {
 }
 
 const ListItem = ({ coin }: ListItemProp) => {
-
-  const source = 'https://engineering.fb.com/wp-content/uploads/2016/04/yearinreview.jpg'
+  const renderVariation = (variation: number) => {
+    if (variation > 0) {
+      return <Variation style={{color: '#72a098'}}>
+        {`+${variation.toFixed(2)}%`}
+      </Variation>
+    }
+    return (
+      <Variation style={{color: '#a2678c'}}>
+        {`${variation.toFixed(2)}%`}
+      </Variation>
+    )
+  }
 
   return (
     <Container>
       <LeftItems>
-
-      <FastImage
-        style={{ width: 50, height: 50 }}
-        source={{
-            uri: source,
-            priority: FastImage.priority.normal,
-        }}
-        resizeMode={FastImage.resizeMode.contain}
-    />
-        
       <Image
-          style={{width: 50, height: 50}}
-          source={{uri:'https://engineering.fb.com/wp-content/uploads/2016/04/yearinreview.jpg'}}
+          style={{width: 50, height: 50, resizeMode: 'stretch', margin: 5}}
+          source={{uri: coin.image}}
       />
         <Main>
           <Name>{coin.name}</Name>
@@ -39,9 +39,8 @@ const ListItem = ({ coin }: ListItemProp) => {
       </LeftItems>
 
       <RightItems>
-        <Price>{`$ ${coin.current_price}`}</Price>
-        <Variation>{`${coin.price_change_percentage_24h}%`}</Variation>
-
+        <Price>{`$ ${coin.current_price.toFixed(2)}`}</Price>
+        {renderVariation(coin.price_change_percentage_24h)}
       </RightItems>
 
     </Container>
