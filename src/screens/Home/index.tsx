@@ -1,13 +1,11 @@
 import React, {useContext} from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import StateContext from '../../contexts/state';
 import {
   Container, 
-  Text,
   TopContainer,
-  Avatar,
   RightItems,
   NotificationContainer
 } from './styles';
