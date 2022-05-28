@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  height: auto;
   padding: 16px;
   color: ${props => props.theme.colors.text};
   display: flex;

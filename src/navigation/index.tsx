@@ -1,62 +1,50 @@
 import * as React from 'react';
-import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { BlurView, VibrancyView } from "@react-native-community/blur";
 
+import theme from '../global/styles/theme';
 
 import Detail from '../screens/Detail';
 import Home from '../screens/Home';
 import List from '../screens/List';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Tab.Navigator 
+        id='teste'
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = '';
 
             if (route.name === 'Home') {
-                iconName = focused? 'wallet': 'wallet-outline';
+                iconName = focused ? 'wallet': 'wallet-outline';
             } else if (route.name === 'List') {
                 iconName = focused ? 'list-circle' : 'list-circle-outline';
-            } else if (route.name === 'Favorites') {
+            } else if (route.name === 'Detail') {
               iconName = focused ? 'aperture' : 'aperture-outline';
           }
-
-            console.log(iconName)
            
             // You can return any component that you like here!
-            return <Icon name={iconName} size={30} color='#900' />
+            return <Icon name={iconName} size={30} color={theme.colors.text} />
         },
-          tabBarActiveTintColor: '#58ceb2',
+          tabBarActiveTintColor: theme.colors.blue,
           tabBarInactiveTintColor: 'gray',
           //Tab bar styles can be added here
           tabBarStyle:{
-            paddingVertical: 5,
+            paddingVertical: 2,
             borderTopLeftRadius:15,
             borderTopRightRadius:15,
-            blurRadius:10,
+            elevation: 0,
             position:'absolute',
-            
+            bottom: 0,
+            backgroundColor: theme.colors.background
           },
           tabBarComponent: (props: any) => (
-            <BlurView
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-              }}
-            >
               <BottomTabBar {...props} />
-            </BlurView>
           ),
           tabBarLabelStyle:{paddingBottom:3},
       })}
